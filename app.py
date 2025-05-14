@@ -1,14 +1,14 @@
+#!pip install streamlit
 
-!pip install streamlit
 import pandas as pd
 import yfinance as yf
 import altair as alt
 import streamlit as st
 
-st.title('米国株価可視化アプリ')
+st.title('日本株価可視化アプリ')
 
 st.sidebar.write("""
-# GAFA株価
+# JP株価
 こちらは株価可視化ツールです。以下のオプションから表示日数を指定できます。
 """)
 
@@ -22,7 +22,7 @@ st.write(f"""
 ### 過去 **{days}日間** のGAFA株価
 """)
 
-@st.cache
+@st.cache_data
 def get_data(days, tickers):
     df = pd.DataFrame()
     for company in tickers.keys():
@@ -42,22 +42,24 @@ try:
     """)
     ymin, ymax = st.sidebar.slider(
         '範囲を指定してください。',
-        0.0, 3500.0, (0.0, 3500.0)
+        0.0, 3500.0, (0.0, 1200.0)
     )
 
     tickers = {
-        'apple': 'AAPL',
-        'facebook': 'FB',
-        'google': 'GOOGL',
-        'microsoft': 'MSFT',
-        'netflix': 'NFLX',
-        'amazon': 'AMZN'
+        'toyota': '7301',
+        'nissan': '7201',
+        'honda': '7267L',
+        'sony': '6758',
+        'oillio': '2602',
+        'amazon': 'AMZN',
+        'nvdia': 'NVDA'
+        
     }
     df = get_data(days, tickers)
     companies = st.multiselect(
         '会社名を選択してください。',
         list(df.index),
-        ['google', 'amazon', 'facebook', 'apple']
+        ['toyota', 'nissan', 'honda', 'oillio']
     )
 
     if not companies:
@@ -83,5 +85,3 @@ except:
     st.error(
         "おっと！なにかエラーが起きているようです。"
     )
-
-    
