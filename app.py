@@ -19,7 +19,7 @@ st.sidebar.write("""
 days = st.sidebar.slider('日数', 1, 50, 20)
 
 st.write(f"""
-### 過去 **{days}日間** のGAFA株価
+### 過去 **{days}日間** のJP株価
 """)
 
 @st.cache_data
@@ -66,7 +66,7 @@ try:
         st.error('少なくとも一社は選んでください。')
     else:
         data = df.loc[companies]
-        st.write("### 株価 (USD)", data.sort_index())
+        st.write("### 株価 (円)", data.sort_index())
         data = data.T.reset_index()
         data = pd.melt(data, id_vars=['Date']).rename(
             columns={'value': 'Stock Prices(USD)'}
