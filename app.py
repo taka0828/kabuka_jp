@@ -46,11 +46,11 @@ try:
     )
 
     tickers = {
-        'toyota': '7301',
-        'nissan': '7201',
-        'honda': '7267L',
-        'sony': '6758',
-        'oillio': '2602',
+        'toyota': '7203.T',
+        'nissan': '7201.T',
+        'honda': '7267.T',
+        'sony': '6758.T',
+        'oillio': '2602.T',
         'amazon': 'AMZN',
         'nvdia': 'NVDA'
         
